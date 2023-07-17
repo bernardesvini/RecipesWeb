@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesWeb", "RecipesWeb\RecipesWeb.csproj", "{68B5125A-F94B-49CD-A728-AAC3D6649C73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesWeb", "RecipesWeb\RecipesWeb.csproj", "{68B5125A-F94B-49CD-A728-AAC3D6649C73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesWeb.Model", "RecipesWeb.Model\RecipesWeb.Model.csproj", "{884FF1A2-56FA-413C-86AA-8BF8E8975630}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{68B5125A-F94B-49CD-A728-AAC3D6649C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68B5125A-F94B-49CD-A728-AAC3D6649C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68B5125A-F94B-49CD-A728-AAC3D6649C73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884FF1A2-56FA-413C-86AA-8BF8E8975630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884FF1A2-56FA-413C-86AA-8BF8E8975630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884FF1A2-56FA-413C-86AA-8BF8E8975630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884FF1A2-56FA-413C-86AA-8BF8E8975630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
