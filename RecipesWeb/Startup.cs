@@ -30,7 +30,7 @@ namespace RecipesWeb
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RecipesWeb", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Recipes Web System", Version = "v1" });
             });
         }
 
