@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RecipesWeb.Service;
+using RecipesWeb.Model;
+using RecipesWeb.Repository;
+
 
 namespace RecipesWeb
 {
@@ -26,7 +30,10 @@ namespace RecipesWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IIngredientService, IngredientService>();
+            services.AddScoped<IIngredientRepository, IngredientRepository>();
 
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

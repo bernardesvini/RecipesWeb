@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace RecipesWeb.Repository
 {
-    internal class IngredientRepository
+    public class IngredientRepository : IIngredientRepository
     {
         public void Create(Ingredient ingredient)
-        {
-            string sql = "INSERT INTO RecipesSystem.dbo.Ingredients(Id, Description) values (" + ingredient.Id + "," + ingredient.Description + ");";
+        {        
+            
+            string sql = "INSERT INTO RecipesSystem.dbo.Ingredients(Description) values ('" + ingredient.Description + "');";
             MSSQL.ExecuteNonQuery(sql);
+
         }
 
         public void Delete(int id)
@@ -52,7 +54,7 @@ namespace RecipesWeb.Repository
 
         public void Update(Ingredient ingredient)
         {
-            string sql = "UPDATE RecipesSystem.dbo.Ingredients SET DESCRIPTION WHERE Id = " + ingredient.Id + ";";
+            string sql = "UPDATE RecipesSystem.dbo.Ingredients SET description = '" + ingredient.Description + "' WHERE Id = " + ingredient.Id + ";";
             MSSQL.ExecuteNonQuery(sql);
         }
 

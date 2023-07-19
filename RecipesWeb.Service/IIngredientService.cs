@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesWeb.Repository
+namespace RecipesWeb.Service
 {
-    public interface IIngredientRepository
+    public interface IIngredientService
     {
         List<Ingredient> RetrieveAll();
         Ingredient Retrieve(int id);

@@ -5,7 +5,7 @@ namespace RecipesWeb.Repository
 {
     public static class MSSQL
     {
-        private static readonly string _connectionString = @"Server=localhost\VINICIUS\SQLEXPRESS01;Database=RecipesSystem;Trusted_Connection=True;";
+        private static readonly string _connectionString = @"Server=VINICIUS\SQLEXPRESS01;Database=RecipesSystem;Trusted_Connection=True;";
         private static readonly SqlConnection _sqlConnection = new SqlConnection(_connectionString);
         private static bool _isClosed = true;
 
