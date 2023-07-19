@@ -10,11 +10,13 @@ namespace RecipesWeb.Repository
 {
     public class IngredientRepository : IIngredientRepository
     {
-        public void Create(Ingredient ingredient)
-        {        
-            
-            string sql = "INSERT INTO RecipesSystem.dbo.Ingredients(Description) values ('" + ingredient.Description + "');";
+        public Ingredient Create(Ingredient ingredient)
+        {
+
+            string sql = $"INSERT INTO RecipesSystem.dbo.Ingredients (Description) values ('{ingredient.Description}');";
             MSSQL.ExecuteNonQuery(sql);
+            int maxId = MSSQL.GetMaxInt("ID", "ingredients");
+            return Retrieve(maxId);
 
         }
 
@@ -52,10 +54,11 @@ namespace RecipesWeb.Repository
 
         }
 
-        public void Update(Ingredient ingredient)
+        public Ingredient Update(Ingredient ingredient)
         {
             string sql = "UPDATE RecipesSystem.dbo.Ingredients SET description = '" + ingredient.Description + "' WHERE Id = " + ingredient.Id + ";";
             MSSQL.ExecuteNonQuery(sql);
+            return Retrieve(ingredient.Id);
         }
 
 

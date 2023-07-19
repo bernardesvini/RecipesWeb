@@ -39,16 +39,16 @@ namespace RecipesWeb.Controllers
 
         // POST api/<IngredientsController>
         [HttpPost]
-        public void Post(Ingredient i)
+        public Ingredient Post(Ingredient i)
         {
-            _ingredientService.Create(i);
+            return _ingredientService.Create(i);
         }
 
         // PUT api/<IngredientsController>/5
         [HttpPut]    
-        public void Put(Ingredient i)
+        public Ingredient Put(Ingredient i)
         {
-            _ingredientService.Update(i);
+            return _ingredientService.Update(i);
         }
 
         // DELETE api/<IngredientsController>/5

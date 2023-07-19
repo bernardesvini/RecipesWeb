@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesWeb", "RecipesWeb\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesWeb.Model", "RecipesWeb.Model\RecipesWeb.Model.csproj", "{884FF1A2-56FA-413C-86AA-8BF8E8975630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesWeb.Repository", "RecipesWeb.Repository\RecipesWeb.Repository.csproj", "{488251F7-0C19-4922-92DE-E245A1BDF93E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesWeb.Repository", "RecipesWeb.Repository\RecipesWeb.Repository.csproj", "{488251F7-0C19-4922-92DE-E245A1BDF93E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesWeb.Service", "RecipesWeb.Service\RecipesWeb.Service.csproj", "{17752FEA-B58A-449A-8CDD-2D23C0921B77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesWeb.Service", "RecipesWeb.Service\RecipesWeb.Service.csproj", "{17752FEA-B58A-449A-8CDD-2D23C0921B77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesWeb.ConsoleApp", "RecipesWeb.ConsoleApp\RecipesWeb.ConsoleApp.csproj", "{6C7B75C3-3A10-49DB-9116-81F6D7CA40F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{17752FEA-B58A-449A-8CDD-2D23C0921B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17752FEA-B58A-449A-8CDD-2D23C0921B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17752FEA-B58A-449A-8CDD-2D23C0921B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7B75C3-3A10-49DB-9116-81F6D7CA40F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7B75C3-3A10-49DB-9116-81F6D7CA40F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7B75C3-3A10-49DB-9116-81F6D7CA40F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7B75C3-3A10-49DB-9116-81F6D7CA40F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

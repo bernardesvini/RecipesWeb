@@ -22,7 +22,17 @@ namespace RecipesWeb.Repository
             SqlCommand sqlCommand = new SqlCommand(sql, _sqlConnection);
             return sqlCommand.ExecuteNonQuery();
         }
-
+        public static int GetMaxInt(string columnName, string tableName)
+        {
+            //TODO; Cuidado com o select max porque vai retornar null se nao tiver registros.
+            string sql = "SELECT max(" + columnName + ") AS MAX_ID FROM " + tableName + ";";
+            SqlDataReader dataReader = Execute(sql);
+            if (dataReader.Read())
+            {
+                return Convert.ToInt32(dataReader["MAX_ID"]);
+            }
+            return -1;
+        }
 
         private static void HangUpCall()
         {

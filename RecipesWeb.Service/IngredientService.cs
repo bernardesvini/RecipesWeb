@@ -8,9 +8,9 @@ namespace RecipesWeb.Service
     public class IngredientService : IIngredientService
     {
         private readonly IIngredientRepository _ingredientRepository = new IngredientRepository();
-        public void Create(Ingredient ingredient)
+        public Ingredient Create(Ingredient ingredient)
         {
-            _ingredientRepository.Create(ingredient);
+            return _ingredientRepository.Create(ingredient);
         }
 
         public void Delete(int id)
@@ -28,9 +28,9 @@ namespace RecipesWeb.Service
             return _ingredientRepository.RetrieveAll();
         }
 
-        public void Update(Ingredient ingredient)
+        public Ingredient Update(Ingredient ingredient)
         {
-            _ingredientRepository.Update(ingredient);
+            return _ingredientRepository.Update(ingredient);
         }
     }
 }

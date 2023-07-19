@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecipesWeb.Service\RecipesWeb.Service.csproj" />
+  </ItemGroup>
+
 </Project>

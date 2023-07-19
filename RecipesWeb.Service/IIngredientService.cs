@@ -11,8 +11,8 @@ namespace RecipesWeb.Service
     {
         List<Ingredient> RetrieveAll();
         Ingredient Retrieve(int id);
-        void Create(Ingredient ingredient);
-        void Update(Ingredient ingredient);
+        Ingredient Create(Ingredient ingredient);
+        Ingredient Update(Ingredient ingredient);
         void Delete(int id);
     }
 }
