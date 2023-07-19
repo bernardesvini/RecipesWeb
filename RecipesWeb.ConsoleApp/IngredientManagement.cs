@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace RecipesWeb.ConsoleApp
@@ -40,33 +41,50 @@ namespace RecipesWeb.ConsoleApp
                         Ingredient ingredient = new Ingredient();
                         ingredient.Description = Console.ReadLine();
                         Ingredient createdIngredient = _ingredientService.Create(ingredient);
-                        Console.WriteLine(createdIngredient);
+                        Console.WriteLine(createdIngredient.ToString());
+                        Console.WriteLine("CREATED!");
+                        Console.ReadLine();
                         break;
                     case 2:
-                        //Console.WriteLine("Insira o id da Brand");
-                        //int id = Convert.ToInt32(Console.ReadLine());
-                        //Brand retrievedBrand = _brandService.Retrieve(id);
-                        //Console.WriteLine(retrievedBrand);
+                        Console.Clear();
+                        Console.Write("Insert the ingredient ID: ");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        Ingredient retrievedIngredient = _ingredientService.Retrieve(id);
+                        Console.WriteLine(retrievedIngredient.ToString());
+                        Console.ReadLine();
                         break;
                     case 3:
-                        //List<Brand> allBrands = _brandService.RetrieveAll();
-                        //Console.WriteLine(JsonSerializer.Serialize(allBrands));
+                        Console.Clear();
+                        List<Ingredient> allIngredients = _ingredientService.RetrieveAll();
+                        
+                        foreach (Ingredient ingredients in allIngredients)
+                            Console.WriteLine(ingredients.ToString());
+                       
+                        Console.ReadLine();
                         break;
                     case 4:
-                        //Console.WriteLine("Insira o id da Brand a atualizar");
-                        //int idToUpdate = Convert.ToInt32(Console.ReadLine());
-                        //Console.WriteLine("Insira o novo nome da Brand");
-                        //string newName = Console.ReadLine();
-                        //Brand brandToUpdate = new Brand();
-                        //brandToUpdate.Id = idToUpdate;
-                        //brandToUpdate.Name = newName;
-                        //Brand updatedBrand = _brandService.Update(brandToUpdate);
-                        //Console.WriteLine(updatedBrand);
+                        Console.Clear();
+
+                        Console.Write("Insert the ingredient ID to update: ");
+                        int idUpdate = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Insert the ingredient's new name: ");
+                        string nameUpdate = Console.ReadLine();
+
+                        Ingredient ingredientUpdated = _ingredientService.Update(new Ingredient { Id = idUpdate, Description = nameUpdate });
+
+                        Console.WriteLine(ingredientUpdated.ToString());
+                        Console.WriteLine("UPDATED!");
+
                         break;
                     case 5:
-                        //Console.WriteLine("Insira o id da Brand a apagar");
-                        //int idToDelete = Convert.ToInt32(Console.ReadLine());
-                        //_brandService.Delete(idToDelete);
+                        Console.Write("Insert the ingredient ID to delete: ");
+                        int idToDelete = Convert.ToInt32(Console.ReadLine());
+                        Ingredient ingredientToDelete = _ingredientService.Retrieve(idToDelete);
+                        _ingredientService.Delete(idToDelete);
+                        Console.WriteLine(ingredientToDelete.ToString());
+                        Console.WriteLine("DELETED!");
+                        Console.ReadLine();
                         break;
                     default:
                         if (option != 0)

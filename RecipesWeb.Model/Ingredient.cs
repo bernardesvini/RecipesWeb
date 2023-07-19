@@ -16,5 +16,10 @@ namespace RecipesWeb.Model
         public Ingredient()
         {
         }
+
+        public override string ToString()
+        {
+            return "ID: " + Id + "\nDescription: " + Description;
+        }
     }
 }

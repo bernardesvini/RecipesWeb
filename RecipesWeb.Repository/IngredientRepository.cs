@@ -32,10 +32,15 @@ namespace RecipesWeb.Repository
 
             SqlDataReader dataReader = MSSQL.Execute(sql);
 
-            if (dataReader.Read())
+            // if (dataReader.Read())
+            try
+            {
                 return new Ingredient { Id = Convert.ToInt32(dataReader["ID"]), Description = Convert.ToString(dataReader["Description"]) };
-
-            throw new KeyNotFoundException("Ingredient ID: " + id + " not found");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Ingredient> RetrieveAll()
