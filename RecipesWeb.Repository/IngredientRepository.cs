@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,15 +33,18 @@ namespace RecipesWeb.Repository
 
             SqlDataReader dataReader = MSSQL.Execute(sql);
 
-            // if (dataReader.Read())
-            try
-            {
-                return new Ingredient { Id = Convert.ToInt32(dataReader["ID"]), Description = Convert.ToString(dataReader["Description"]) };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+             if (dataReader.Read())
+                return Parse(dataReader);
+
+            throw new Exception("Ingredient with id " + id + " not found.");
+            //try
+            //{
+            //    return new Ingredient { Id = Convert.ToInt32(dataReader["ID"]), Description = Convert.ToString(dataReader["Description"]) };
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
         }
 
         public List<Ingredient> RetrieveAll()
@@ -66,6 +70,15 @@ namespace RecipesWeb.Repository
             return Retrieve(ingredient.Id);
         }
 
+        private Ingredient Parse(SqlDataReader reader)
+        {
+            int ingredientId = Convert.ToInt32(reader["ID"]);
+            string ingredientName = Convert.ToString(reader["Description"]);
+            Ingredient ingredient = new Ingredient();
+            ingredient.Id = ingredientId;
+            ingredient.Description = ingredientName;
+            return ingredient;
+        }
 
     }
 }

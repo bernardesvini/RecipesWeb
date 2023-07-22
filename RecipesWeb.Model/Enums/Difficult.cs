@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipesWeb.Model.Enums
 {
-    internal enum Difficult
+    public enum Difficult
     {
         Easy = 0,
         Medium = 1,

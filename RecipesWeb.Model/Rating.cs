@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipesWeb.Model
 {
-    internal class Rating
+    public class Rating
     {
         public int Id { get; set; }
         public int Ratings { get; set; }
