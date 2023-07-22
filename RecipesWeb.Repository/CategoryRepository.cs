@@ -30,10 +30,22 @@ namespace RecipesWeb.Repository
 
             SqlDataReader reader = MSSQL.Execute(sql);
 
-            if (reader.Read())
-                return Parse(reader);
+                if (reader.Read())
+                    return Parse(reader);
 
             throw new Exception("Category with id " + id + " not found.");
+
+
+            //try
+            //{
+            //    if (reader.Read())
+            //        return Parse(reader);
+            //}
+            //catch (Exception ex) 
+            //{ 
+            //    throw new Exception(ex.Message); 
+            //}
+
             //try
             //{
             //    return new Category { Id = Convert.ToInt32(reader["Id"]), Name = Convert.ToString(reader["Name"]) };

@@ -14,7 +14,7 @@ namespace RecipesWeb.ConsoleApp
 
             Console.WriteLine("Welcome to Recipes System");
             Console.WriteLine("Press any key to continue");
-            Console.ReadKey();  
+            Console.ReadKey();
 
             int option = 0;
 
@@ -26,7 +26,8 @@ namespace RecipesWeb.ConsoleApp
 
                 Console.WriteLine("0 - Sair");
                 Console.WriteLine("1 - Ingredient Management");
-                
+                Console.WriteLine("2 - Category Management");
+
 
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -39,6 +40,8 @@ namespace RecipesWeb.ConsoleApp
                         ingredientManagement.Run();
                         break;
                     case 2:
+                        CategoryManagement categoryManagement = new CategoryManagement();
+                        categoryManagement.Run();
                         break;
                     case 3:
                         break;

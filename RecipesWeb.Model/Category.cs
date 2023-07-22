@@ -20,5 +20,9 @@ namespace RecipesWeb.Model
         public Category()
         {
         }
+        public override string ToString()
+        {
+            return "ID: " + Id + "\nName: " + Name;
+        }
     }
 }
