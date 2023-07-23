@@ -14,7 +14,7 @@ namespace RecipesWeb.Repository
         {
             string sql = $"INSERT INTO RecipesSystem.dbo.Category (Name) values ('{category.Name}');";
             MSSQL.ExecuteNonQuery(sql);
-            int maxId = MSSQL.GetMaxInt("ID", "category");
+            int maxId = MSSQL.GetMaxInt("ID", "Category");
             return Retrieve(maxId);
         }
 

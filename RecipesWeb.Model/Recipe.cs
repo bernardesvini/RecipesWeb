@@ -1,6 +1,7 @@
 ﻿using RecipesWeb.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,25 @@ namespace RecipesWeb.Model
 
         public Recipe()
         {
+        }
+
+        public override string ToString()
+        {
+            string printRecipe = $"ID: {Id} \nTitle: {Title} \nDifficult: {Difficult} \nCategory: {Category.Name} \n" +
+                $"Preparation Time: {PreparationTime} minutes \nIngredients: ";
+
+            foreach (var item in Ingredients)
+            {
+                printRecipe += $"\n{item.Description}";
+            }
+
+            return printRecipe;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Recipe recipe &&
+                   Title == recipe.Title;
         }
     }
 }
