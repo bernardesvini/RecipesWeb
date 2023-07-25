@@ -37,15 +37,16 @@ namespace RecipesWeb.Controllers
 
         // POST api/<RecipesController>
         [HttpPost]
-        public Recipe Post(Recipe i)
+        public Recipe Post(Recipe r)
         {
-           return _recipeService.Create(i);
+           return _recipeService.Create(r);
         }
 
         // PUT api/<RecipesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public Recipe Put(Recipe r)
         {
+            return _recipeService.Update(r);
         }
 
         // DELETE api/<RecipesController>/5

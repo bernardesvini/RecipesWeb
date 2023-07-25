@@ -22,9 +22,12 @@ namespace RecipesWeb.Repository
 
             foreach (Ingredient ingredient in recipe.Ingredients)
             {
-                sql = $"INSERT INTO RecipesSystem.dbo.recipes_ingredients (recipe_ID, ingredient_ID) " +
-                    $"values ({maxId}, {ingredient.Id});";
-                MSSQL.ExecuteNonQuery(sql);
+
+                InsertIngredients(maxId, ingredient.Id);
+
+                //sql = $"INSERT INTO RecipesSystem.dbo.recipes_ingredients (recipe_ID, ingredient_ID) " +
+                //    $"values ({maxId}, {ingredient.Id});";
+                //MSSQL.ExecuteNonQuery(sql);
             }
 
             return Retrieve(maxId);
@@ -32,11 +35,14 @@ namespace RecipesWeb.Repository
 
         public void Delete(int id)
         {
+
+            DeleteIngredients(id);
+
             string sql = "DELETE FROM RecipesSystem.dbo.Recipes WHERE Id = " + id + ";";
             MSSQL.ExecuteNonQuery(sql);
 
-            sql = "DELETE FROM RecipesSystem.dbo.recipe_ingredients WHERE recipe_ID = " + id + ";";
-            MSSQL.ExecuteNonQuery(sql);
+            //            sql = "DELETE FROM RecipesSystem.dbo.recipe_ingredients WHERE recipe_ID = " + id + ";";
+            //            MSSQL.ExecuteNonQuery(sql);
 
         }
 
@@ -48,7 +54,7 @@ namespace RecipesWeb.Repository
 
             string sql = "SELECT * FROM RecipesSystem.dbo.Recipes " +
                 "INNER JOIN RecipesSystem.dbo.Category ON RecipesSystem.dbo.Recipes.Category_ID = RecipesSystem.dbo.Category.Id;";
-       
+
             SqlDataReader dataReader = MSSQL.Execute(sql);
 
             List<Recipe> recipes = new List<Recipe>();
@@ -84,7 +90,26 @@ namespace RecipesWeb.Repository
 
         public Recipe Update(Recipe recipe)
         {
-            throw new NotImplementedException();
+
+                string sql = $"UPDATE RecipesSystem.dbo.Recipes " +
+                         $"SET " +
+                         $"Title = '{recipe.Title}', " +
+                         $"Difficult = {((int)recipe.Difficult)}, " +
+                         $"Preparation_Time = {recipe.PreparationTime}, " +
+                         $"Category_ID = {recipe.Category.Id} " +
+                         $"WHERE ID = {recipe.Id};";
+
+            MSSQL.ExecuteNonQuery(sql);
+
+            DeleteIngredients(recipe.Id);
+
+            foreach (Ingredient ing in recipe.Ingredients)
+            {
+                InsertIngredients(recipe.Id, ing.Id);
+            }
+
+
+            return Retrieve(recipe.Id);
         }
 
         public Recipe UpdatePartial(Recipe recipe)
@@ -145,7 +170,7 @@ namespace RecipesWeb.Repository
 
             recipe.Category = category;
 
-          return recipe;
+            return recipe;
         }
 
         private void AddIngredients(Recipe recipe)
@@ -165,5 +190,37 @@ namespace RecipesWeb.Repository
                 recipe.Ingredients.Add(ingredient);
             }
         }
+        //private List<Ingredient> AddIngredientsUpdate(List<Ingredient> ingredients, int id)
+        //{
+        //    string sql = $"SELECT * FROM RecipesSystem.dbo.recipes_ingredients " +
+        //        $"INNER JOIN RecipesSystem.dbo.Ingredients ON RecipesSystem.dbo.recipes_ingredients.ingredient_ID = RecipesSystem.dbo.Ingredients.ID " +
+        //        $"WHERE recipe_ID = {id}";
+
+        //    SqlDataReader ingredientReader = MSSQL.Execute(sql);
+
+        //    while (ingredientReader.Read())
+        //    {
+        //        Ingredient ingredient = new Ingredient();
+        //        ingredient.Id = Convert.ToInt32(ingredientReader["ingredient_ID"]);
+        //        ingredient.Description = Convert.ToString(ingredientReader["Description"]);
+
+        //        ingredients.Add(ingredient);
+        //    }
+
+        //    return ingredients;
+        //}
+        public void DeleteIngredients(int id)
+        {
+            string sql = "DELETE FROM RecipesSystem.dbo.recipes_ingredients WHERE recipe_ID = " + id + ";";
+            MSSQL.ExecuteNonQuery(sql);
+        }
+
+        private void InsertIngredients(int recipeId, int ingredientId)
+        {
+            string sql = $"INSERT INTO RecipesSystem.dbo.recipes_ingredients (recipe_ID, ingredient_ID) " +
+                  $"values ({recipeId}, {ingredientId});";
+            MSSQL.ExecuteNonQuery(sql);
+        }
     }
+
 }

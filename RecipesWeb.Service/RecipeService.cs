@@ -33,7 +33,7 @@ namespace RecipesWeb.Service
 
         public Recipe Update(Recipe recipe)
         {
-            throw new NotImplementedException();
+            return _recipeRepository.Update(recipe);
         }
 
         public Recipe UpdatePartial(Recipe recipe)
