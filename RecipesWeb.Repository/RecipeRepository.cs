@@ -1,5 +1,4 @@
 ﻿using RecipesWeb.Model;
-using RecipesWeb.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,7 +14,7 @@ namespace RecipesWeb.Repository
         {
 
             string sql = $"INSERT INTO RecipesSystem.dbo.Recipes (Title, Difficult, Preparation_Time, Category_ID) " +
-                         $"values ('{recipe.Title}', {((int)recipe.Difficult)}, {recipe.PreparationTime}, {recipe.Category.Id});";
+                         $"values ('{recipe.Title}', {recipe.Difficult.Id}, {recipe.PreparationTime}, {recipe.Category.Id});";
             MSSQL.ExecuteNonQuery(sql);
 
             int maxId = MSSQL.GetMaxInt("ID", "Recipes");
@@ -53,7 +52,8 @@ namespace RecipesWeb.Repository
             //"ORDER BY Recipes.Title;";
 
             string sql = "SELECT * FROM RecipesSystem.dbo.Recipes " +
-                "INNER JOIN RecipesSystem.dbo.Category ON RecipesSystem.dbo.Recipes.Category_ID = RecipesSystem.dbo.Category.Id;";
+                "INNER JOIN RecipesSystem.dbo.Category ON RecipesSystem.dbo.Recipes.Category_ID = RecipesSystem.dbo.Category.Id " +
+                "INNER JOIN RecipesSystem.dbo.Difficult ON RecipesSystem.dbo.Recipes.Difficult_ID = RecipesSystem.dbo.Difficult.ID;";
 
             SqlDataReader dataReader = MSSQL.Execute(sql);
 
@@ -76,6 +76,7 @@ namespace RecipesWeb.Repository
         {
             string sql = "SELECT * FROM RecipesSystem.dbo.Recipes " +
                 "INNER JOIN RecipesSystem.dbo.Category ON RecipesSystem.dbo.Recipes.Category_ID = RecipesSystem.dbo.Category.Id " +
+                "INNER JOIN RecipesSystem.dbo.Difficult ON RecipesSystem.dbo.Recipes.Difficult_ID = RecipesSystem.dbo.Difficult.ID " +
                 $"WHERE RecipesSystem.dbo.Recipes.ID = {id};";
 
             SqlDataReader dataReader = MSSQL.Execute(sql);
@@ -94,7 +95,7 @@ namespace RecipesWeb.Repository
             string sql = $"UPDATE RecipesSystem.dbo.Recipes " +
                      $"SET " +
                      $"Title = '{recipe.Title}', " +
-                     $"Difficult = {((int)recipe.Difficult)}, " +
+                     $"Difficult = {recipe.Difficult.Id}, " +
                      $"Preparation_Time = {recipe.PreparationTime}, " +
                      $"Category_ID = {recipe.Category.Id} " +
                      $"WHERE ID = {recipe.Id};";
@@ -124,15 +125,12 @@ namespace RecipesWeb.Repository
             recipe.Id = Convert.ToInt32(reader["ID"]);
             recipe.Title = Convert.ToString(reader["Title"]);
 
-            if (Convert.ToInt32(reader["Difficult"]) == 0)
-                recipe.Difficult = Difficult.Easy;
-            else if (Convert.ToInt32(reader["Difficult"]) == 1)
-                recipe.Difficult = Difficult.Medium;
-            else if (Convert.ToInt32(reader["Difficult"]) == 2)
-                recipe.Difficult = Difficult.Hard;
-            else if (Convert.ToInt32(reader["Difficult"]) == 3)
-                recipe.Difficult = Difficult.Expert;
+            Difficult difficult = new Difficult();
+            difficult.Id = Convert.ToInt32(reader["Difficult_ID"]);
+            difficult.Name = Convert.ToString(reader["difficult_name"]);
 
+            recipe.Difficult = difficult;
+           
             recipe.PreparationTime = Convert.ToInt32(reader["Preparation_Time"]);
 
             Category category = new Category();
@@ -153,14 +151,11 @@ namespace RecipesWeb.Repository
             recipe.Id = Convert.ToInt32(reader["ID"]);
             recipe.Title = Convert.ToString(reader["Title"]);
 
-            if (Convert.ToInt32(reader["Difficult"]) == 0)
-                recipe.Difficult = Difficult.Easy;
-            else if (Convert.ToInt32(reader["Difficult"]) == 1)
-                recipe.Difficult = Difficult.Medium;
-            else if (Convert.ToInt32(reader["Difficult"]) == 2)
-                recipe.Difficult = Difficult.Hard;
-            else if (Convert.ToInt32(reader["Difficult"]) == 3)
-                recipe.Difficult = Difficult.Expert;
+            Difficult difficult = new Difficult();
+            difficult.Id = Convert.ToInt32(reader["Difficult_ID"]);
+            difficult.Name = Convert.ToString(reader["difficult_name"]);
+
+            recipe.Difficult = difficult;
 
             recipe.PreparationTime = Convert.ToInt32(reader["Preparation_Time"]);
 

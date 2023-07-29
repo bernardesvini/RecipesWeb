@@ -36,6 +36,8 @@ namespace RecipesWeb
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
+            services.AddScoped<IDifficultService, DifficultService>();
+            services.AddScoped<IDifficultRepository, DifficultRepository>();
 
             services.AddCors();
             services.AddControllers();

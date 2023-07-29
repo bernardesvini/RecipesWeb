@@ -1,5 +1,4 @@
 ﻿using RecipesWeb.Model;
-using RecipesWeb.Model.Enums;
 using RecipesWeb.Service;
 using System;
 using System.Collections.Generic;
@@ -61,25 +60,25 @@ namespace RecipesWeb.ConsoleApp
                             int difficultOption = Convert.ToInt32(Console.ReadLine());
 
 
-                            switch (difficultOption)
-                            {
-                                case 1:
-                                    recipe.Difficult = Difficult.Easy;
-                                    validDifficult = true;
-                                    break;
-                                case 2:
-                                    recipe.Difficult = Difficult.Medium;
-                                    validDifficult = true;
-                                    break;
-                                case 3:
-                                    recipe.Difficult = Difficult.Hard;
-                                    validDifficult = true;
-                                    break;
-                                case 4:
-                                    recipe.Difficult = Difficult.Expert;
-                                    validDifficult = true;
-                                    break;
-                            }
+                            //switch (difficultOption)
+                            //{
+                            //    case 1:
+                            //        recipe.Difficult = Difficult.Easy;
+                            //        validDifficult = true;
+                            //        break;
+                            //    case 2:
+                            //        recipe.Difficult = Difficult.Medium;
+                            //        validDifficult = true;
+                            //        break;
+                            //    case 3:
+                            //        recipe.Difficult = Difficult.Hard;
+                            //        validDifficult = true;
+                            //        break;
+                            //    case 4:
+                            //        recipe.Difficult = Difficult.Expert;
+                            //        validDifficult = true;
+                            //        break;
+                            //}
                         } while (!validDifficult);
 
                         Console.Clear();
@@ -117,7 +116,7 @@ namespace RecipesWeb.ConsoleApp
                             Console.WriteLine();
                             Console.Write("Put the number of the ingredient for your recipe: ");
                             int selectedIngredient = int.Parse(Console.ReadLine());
-                         
+
 
                             recipe.Ingredients.Add(ingredients.Find(x => x.Id == selectedIngredient));
 
@@ -141,7 +140,7 @@ namespace RecipesWeb.ConsoleApp
                         int id = int.Parse(Console.ReadLine());
 
                         Recipe retrievedRecipe = _recipeService.Retrieve(id);
-                        
+
                         Console.WriteLine(retrievedRecipe.ToString());
                         Console.ReadLine();
                         break;
@@ -151,13 +150,13 @@ namespace RecipesWeb.ConsoleApp
                         List<Recipe> allRecipes = _recipeService.RetrieveAll();
 
                         foreach (Recipe recipes in allRecipes)
-                        { 
+                        {
                             Console.WriteLine(recipes.ToString());
                             Console.WriteLine("");
                         }
 
                         Console.ReadLine();
-                                             
+
                         break;
                     case 4:
                         //Console.Clear();
@@ -258,7 +257,7 @@ namespace RecipesWeb.ConsoleApp
                         //Console.WriteLine(createdRecipe.ToString());
                         //Console.WriteLine("CREATED!");
                         //Console.ReadLine();
-                        
+
                         break;
                     case 5:
 

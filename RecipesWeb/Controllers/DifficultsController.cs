@@ -10,14 +10,14 @@ namespace RecipesWeb.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CategorysController : ControllerBase
+    public class DifficultsController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
-        private readonly ILogger<CategorysController> _logger;
+        private readonly IDifficultService _difficultService;
+        private readonly ILogger<DifficultsController> _logger;
 
-        public CategorysController(ICategoryService categoryService, ILogger<CategorysController> logger)
+        public DifficultsController(IDifficultService difficultService, ILogger<DifficultsController> logger)
         {
-            _categoryService = categoryService;
+            _difficultService = difficultService;
             _logger = logger;
         }
 
@@ -25,37 +25,37 @@ namespace RecipesWeb.Controllers
 
         // GET: api/<CategorysController>
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<Difficult> Get()
         {
-            return _categoryService.RetrieveAll();
+            return _difficultService.RetrieveAll();
         }
 
         // GET api/<CategorysController>/5
         [HttpGet("{id}")]
-        public Category Get(int id)
+        public Difficult Get(int id)
         {
-            return _categoryService.Retrieve(id);
+            return _difficultService.Retrieve(id);
         }
 
         // POST api/<CategorysController>
         [HttpPost]
-        public Category Post(Category c)
+        public Difficult Post(Difficult d)
         {
-           return _categoryService.Create(c);
+            return _difficultService.Create(d);
         }
 
         // PUT api/<CategorysController>/5
         [HttpPut]
-        public Category Put(Category c)
+        public Difficult Put(Difficult c)
         {
-            return _categoryService.Update(c);
+            return _difficultService.Update(c);
         }
 
         // DELETE api/<CategorysController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _categoryService.Delete(id);
+            _difficultService.Delete(id);
         }
     }
 }
