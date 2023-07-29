@@ -44,10 +44,6 @@ namespace RecipesWeb.Model
             return printRecipe;
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is Recipe recipe &&
-                   Title == recipe.Title;
-        }
+ 
     }
 }

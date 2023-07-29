@@ -22,13 +22,13 @@ namespace RecipesWeb.Repository
 
             foreach (Ingredient ingredient in recipe.Ingredients)
             {
-
                 InsertIngredients(maxId, ingredient.Id);
-
-                //sql = $"INSERT INTO RecipesSystem.dbo.recipes_ingredients (recipe_ID, ingredient_ID) " +
-                //    $"values ({maxId}, {ingredient.Id});";
-                //MSSQL.ExecuteNonQuery(sql);
             }
+
+            //sql = $"INSERT INTO RecipesSystem.dbo.recipes_ingredients (recipe_ID, ingredient_ID) " +
+            //    $"values ({maxId}, {ingredient.Id});";
+            //MSSQL.ExecuteNonQuery(sql);
+
 
             return Retrieve(maxId);
         }
@@ -91,13 +91,13 @@ namespace RecipesWeb.Repository
         public Recipe Update(Recipe recipe)
         {
 
-                string sql = $"UPDATE RecipesSystem.dbo.Recipes " +
-                         $"SET " +
-                         $"Title = '{recipe.Title}', " +
-                         $"Difficult = {((int)recipe.Difficult)}, " +
-                         $"Preparation_Time = {recipe.PreparationTime}, " +
-                         $"Category_ID = {recipe.Category.Id} " +
-                         $"WHERE ID = {recipe.Id};";
+            string sql = $"UPDATE RecipesSystem.dbo.Recipes " +
+                     $"SET " +
+                     $"Title = '{recipe.Title}', " +
+                     $"Difficult = {((int)recipe.Difficult)}, " +
+                     $"Preparation_Time = {recipe.PreparationTime}, " +
+                     $"Category_ID = {recipe.Category.Id} " +
+                     $"WHERE ID = {recipe.Id};";
 
             MSSQL.ExecuteNonQuery(sql);
 

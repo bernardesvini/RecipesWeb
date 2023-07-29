@@ -27,6 +27,7 @@ namespace RecipesWeb.ConsoleApp
                 Console.WriteLine("0 - Sair");
                 Console.WriteLine("1 - Ingredient Management");
                 Console.WriteLine("2 - Category Management");
+                Console.WriteLine("3 - Recipe Management");
 
 
 
@@ -44,6 +45,8 @@ namespace RecipesWeb.ConsoleApp
                         categoryManagement.Run();
                         break;
                     case 3:
+                        RecipeManagement recipeManagement = new RecipeManagement();
+                        recipeManagement.Run();
                         break;
                     case 4:
                         break;
